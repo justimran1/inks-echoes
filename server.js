@@ -1,4 +1,4 @@
-import dotenv from "dot.env";
+import dotenv from "dotenv";
 import pg from "pg";
 import express from "express";
 import axios from "axios";
