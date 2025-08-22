@@ -45,3 +45,6 @@ pids
 
 # Misc
 *.tgz
+guideApi.txt
+query.sql
+form.js

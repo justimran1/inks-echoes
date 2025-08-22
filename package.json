@@ -1,9 +1,9 @@
 {
-    "name": "World capital quiz",
-    "description": "A replica of the prev udemy capital quiz",
+    "name": "Inks and Echoes",
+    "description": "A book app",
     "authors": "author",
     "version": "1.0.0",
-    "main": "/server.js",
+    "main": "server.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
