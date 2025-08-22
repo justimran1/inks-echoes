@@ -15,7 +15,7 @@ const db = new Pool({
     rejectUnauthorized: false, // required for Render
   },
 });
-
+export default db;
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.static("public"));
 server.set("view engine", "ejs");
