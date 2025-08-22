@@ -1,0 +1,19 @@
+
+    <%- include('partials/header') %>
+    <body>
+      <h1>Results for "<%= searchQuery %>"</h1>
+
+      <div class="book-list">
+        <% if (books.length > 0) { %> <% books.forEach(book => { %>
+        <div class="book-card">
+          <img src="<%= book.coverUrl %>" alt="Book Cover" />
+          <h3><%= book.title %></h3>
+          <p><%= book.author %></p>
+        </div>
+        <% }) %> <% } else { %>
+        <p>No books found for "<%= searchQuery %>".</p>
+        <% } %>
+      </div>
+    <%- include('partials/footer') %>
+  </body>
+</html>

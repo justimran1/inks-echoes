@@ -1,0 +1,138 @@
+<%- include('partials/header') %>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content slide-in">
+        <h1>
+          <span class="fancy-icon">I</span>
+          <span class="fancy-text">nk & Echoes</span>
+        </h1>
+        <p class="desc">“A home for storytellers and readers alike</p>
+      </div>
+    </div>
+    <section class="read">
+      <h2 class="slide-in">
+        <span class="fancy-icon">M</span>
+        <span class="fancy-text">y Books</span>
+      </h2>
+      <p class="slide-in">"Where every page leaves a lasting trace"</p>
+      <div class="read-content slide-in">
+        <% four_books.forEach(e => { %>
+        <div class="book">
+          <a class="view" href="/books/<%= e.book_id %>">
+            <img
+              src="https://covers.openlibrary.org/a/id/<%=e.cover_id%>-L.jpg"
+              alt="book cover"
+          /></a>
+          <div>
+            <h3>
+              <a class="view" href="/books/<%= e.book_id %>"><%=e.title%></a>
+            </h3>
+            <div class="star-rating" id="rating">
+              <span class="star" data-value="5">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="1">★</span>
+            </div>
+            <!-- <p class="date">Read on <%=e.review_date%></p> -->
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </section>
+
+    <section>
+      <div class="content slide-in">
+        <div class="alt two">
+          <h3>Follow the Echoes</h3>
+          <p>
+            See what stories are resonating with other readers, and let the
+            community guide your next adventure.
+          </p>
+          <p>
+            A clean, book-inspired interface that feels like stepping into a
+            modern digital library.
+          </p>
+        </div>
+        <div class="design one">
+          <img src="/images/old-man-taking-book-from-shelf.svg" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="content slide-in">
+        <div class="design">
+          <img src="/images/lady-keeping-books-on-shelf.svg" alt="" />
+        </div>
+        <div class="alt">
+          <h3>Discover New Reads</h3>
+          <p>
+            Explore a curated collection of timeless classics, modern
+            bestsellers, and hidden literary gems.
+          </p>
+          <p>
+            Whether you’re a lifelong bibliophile or just starting your reading
+            journey, Ink & Echoes makes sure the stories you read never fade
+            away — they echo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="read slide-in">
+      <div class="read-content">
+        <% rem_books.forEach((e)=> { %>
+        <div class="book">
+          <a class="view" href="/books/<%= e.book_id %>">
+            <img
+              src="https://covers.openlibrary.org/a/id/<%=e.cover_id%>-L.jpg"
+              alt="book cover"
+          /></a>
+          <div>
+            <h3>
+              <a class="view" href="/books/<%= e.book_id %>"><%=e.title%></a>
+            </h3>
+            <div class="star-rating" id="rating">
+              <span class="star" data-value="5">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="1">★</span>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </section>
+
+    <section class="last slide-in">
+      <div>
+        <h3>Leave Your Echo</h3>
+        <p>
+          Write reviews, share reflections, and rate the books you’ve read to
+          help others on their reading journey.
+        </p>
+      </div>
+    </section>
+  </div>
+  <%- include('partials/footer') %>
+  <!-- </body> -->
+  <script>
+    const elements = document.querySelectorAll(".slide-in");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  </script>
+</body>

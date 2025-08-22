@@ -1,0 +1,110 @@
+.edit-page {
+  max-width: 520px;
+  margin: 48px auto 0 auto;
+  padding: 36px 32px 28px 32px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
+  font-family: "Segoe UI", "Merriweather", serif;
+}
+body {
+  margin-top: 2rem;
+  padding-top: 3rem;
+}
+.edit-page .edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.edit-page input[type="text"],
+.edit-page input[type="date"],
+.edit-page select {
+  padding: 14px 16px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #e6c07b;
+  background: #f8f6f2;
+  font-size: 1.08rem;
+  color: #2d3e50;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+/* .edit-page input[type="text"], */
+.edit-page input[type="search"],
+/* .edit-page input[type="date"], */
+.edit-page select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid #e6c07b;
+  background: #f8f6f2;
+  font-size: 1.08rem;
+  color: #2d3e50;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  margin-top: 0;
+}
+
+.edit-page input[type="text"]:focus,
+.edit-page input[type="search"]:focus,
+.edit-page input[type="date"]:focus,
+.edit-page select:focus {
+  border-color: #4fd6b1;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+}
+
+.edit-page label {
+  font-size: 1rem;
+  color: #7c5e3c;
+  margin-bottom: 0;
+  font-weight: 600;
+  display: block;
+}
+
+.edit-page input[type="submit"],
+.edit-page button.full-width {
+  width: 100%;
+  background: #e6c07b;
+  color: #7c5e3c;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 0;
+  margin-top: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.edit-page input[type="submit"]:hover,
+.edit-page button.full-width:hover {
+  background: linear-gradient(90deg, #e6c07b 0%, #4fd6b1 100%);
+  color: #2d3e50;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.16);
+}
+
+.edit-page select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg width='16' height='16' fill='gray' xmlns='http://www.w3.org/2000/svg'><path d='M4 6l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px 18px;
+}
+
+@media (max-width: 480px) {
+  .edit-page {
+    margin-top: 2rem;
+    max-width: 98vw;
+    padding: 18px 6px;
+    z-index: 233;
+  }
+  .edit-page input[type="submit"],
+  .edit-page button.full-width {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+}

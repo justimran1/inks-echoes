@@ -1,0 +1,56 @@
+<%- include('partials/header') %>
+<body>
+  <div class="edit-page">
+    <% if (locals.books) { %>
+    <form
+      id="editForm"
+      class="edit-form"
+      method="post"
+      action="/edit/<%= books.book_id %>"
+    >
+      <label for="text">Edit review</label>
+      <input
+        type="text"
+        name="review_text"
+        value="<%=books.review_text %>"
+        autocorrect="on"
+        autofocus
+      />
+      <button class="full-width" type="submit"><%= submit %></button>
+    </form>
+    <% } else {%>
+    <form id="newPostForm" class="edit-form" method="post" action="/add">
+      <div>
+        <label for="">Search a book</label>
+        <input
+          type="search"
+          name="title"
+          placeholder="What book have you read ?"
+          autocorrect="on"
+        />
+      </div>
+      <div>
+        <label for="">Review</label>
+        <input
+          type="text"
+          placeholder="Review text"
+          name="review_text"
+          autocorrect="on"
+        />
+        <label for="date">When did you read this?</label>
+        <input type="date" name="review_date" />
+        <label for="rating">How would you rate it?</label>
+        <select name="review_rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input type="submit" value="<%= submit %>" />
+      </div>
+    </form>
+    <% } %>
+  </div>
+  <%- include('partials/footer') %>
+</body>

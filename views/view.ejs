@@ -1,0 +1,90 @@
+<%- include('partials/header') %>
+<body>
+  <div class="book-detail">
+    <div class="book-detail-container">
+      <div class="book-detail-main">
+        <div class="book-detail-cover">
+          <img
+            src="https://covers.openlibrary.org/a/id/<%= books.cover_id %>-L.jpg"
+            alt="book cover"
+            class="book-cover-img"
+          />
+        </div>
+        <div class="book-detail-info">
+          <h1 class="book-title"><%= books.title %></h1>
+          <h2 class="book-author">By <%= books.author %></h2>
+          <div class="book-meta2">
+            <span class="readd">Read Excerpt  |</span>
+            <span>Watch Trailer</span>
+          </div>
+          <hr class="divider">
+          <div class="book-meta">
+            <p class="publish-date">Published: <%= books.first_published %></p>
+            <p class="review-date">Reviewed: <%= books.review_date %></p>
+          </div>
+          <div class="star-rating" id="rating">
+            <span class="star" data-value="5">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="1">★</span>
+          </div>
+          <hr class="divider">
+          <div class="book-actions">
+            <a href="/editpage/<%= books.book_id %>" class="btn edit-btn">Edit</a>
+            <a href="/delete/<%= books.book_id %>" class="btn delete-btn">
+              Delete <img src="\public\images\cross (3).svg" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="book-detail-tabs">
+        <ul class="tab-nav">
+          <li class="active"><a href="#about-book">Review </a></li>
+          <li><a href="#about-author">About the Author</a></li>
+          <li><a href="#author-site">Author's Website</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="about-book" class="tab-pane active">
+            <h3>About the Book</h3>
+            <p><%= books.review_text %></p>
+          </div>
+          <div id="about-author" class="tab-pane">
+            <h3>About the Author</h3>
+            <div class="author-info">
+              <div class="author-img">
+                <img
+                  src="https://covers.openlibrary.org/b/id/<%= books.author_cover_id %>-M.jpg"
+                  alt="author cover"
+                />
+              </div>
+              <div class="author-bio">
+                <h4><%= books.author %></h4>
+                <p><%= books.author_bio %></p>
+              </div>
+            </div>
+          </div>
+          <div id="author-site" class="tab-pane">
+            <h3>Author's Website</h3>
+            <a href="<%= books.author_site %>" target="_blank" class="author-site-link">
+              Visit Author's Site
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <%- include('partials/footer') %>
+  <script>
+  document.querySelectorAll('.tab-nav a').forEach(function(tabLink) {
+    tabLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.tab-nav li').forEach(li => li.classList.remove('active'));
+      this.parentElement.classList.add('active');
+      document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+      document.querySelector(this.getAttribute('href')).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

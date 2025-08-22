@@ -1,0 +1,354 @@
+https://covers.openlibrary.org/b/isbn/0385472579-S.jpg
+*to get a book cover from the covers API using ISBN 
+
+https://covers.openlibrary.org/b/id/240727-S.jpg
+https://covers.openlibrary.org/b/olid/OL7440033M-S.jpg
+https://covers.openlibrary.org/b/isbn/0385472579-S.jpg
+https://covers.openlibrary.org/b/isbn/9780385472579-S.jpg
+https://covers.openlibrary.org/b/lccn/93005405-S.jpg
+https://covers.openlibrary.org/b/oclc/28419896-S.jpg
+*Diffferent ways to acessbook covers
+
+
+*Different ways to access book authors
+https://covers.openlibrary.org/a/olid/OL229501A-S.jpg
+
+
+Cover Size & API Access
+You can add .json to end end of cover urls to return API information about the cover, e.g. https://covers.openlibrary.org/b/id/12547191.json.
+
+One can fetch the image off-screen and use it's width/height:
+
+async function fetchImage(url) {
+    const img = new Image();
+    return new Promise((res, rej) => {
+        img.onload = () => res(img);
+        img.onerror = e => rej(e);
+        img.src = url;
+    });
+}
+const img = await fetchImage('https://covers.openlibrary.org/b/id/12547191-L.jpg');
+const w = img.width;
+const h = img.height;
+This one way one won't need to make two separate requests per image! The browser won't make a second request for the image if you set the src of your visible <img> element after fetching it in this way.
+
+
+Hi loannis,
+
+Yes, I have a column as cover_id but it is set to integer as it is in open library. I did not pass pictures into my database. I just used the cover_id to fetch the book cover from open library. See img tag below:
+
+
+
+... <img src="//covers.openlibrary.org/b/id/<%= book.cover_id %>-L.jpg"
+                            srcset="//covers.openlibrary.org/b/id/<%= book.cover_id %>-L.jpg 2x" alt="Book cover">
+SQL script:   
+
+DROP TABLE IF EXISTS books, book_reviews;
+CREATE TABLE books (
+    book_id SERIAL PRIMARY KEY,
+    title VARCHAR(255) UNIQUE NOT NULL,
+    author VARCHAR(255),
+    cover_id INTEGER   
+    author_cover_id INTEGER 
+);
+ 
+CREATE TABLE book_reviews (
+    review_id SERIAL PRIMARY KEY,
+    book_id INTEGER REFERENCES books(book_id),    
+    rating INTEGER CHECK (rating >= 1 AND rating <= 5),
+    review_text TEXT,
+    review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP    
+);
+
+
+
+
+Using Thing IDs to get Images
+You can use the olid (Open Library ID) for authors and books to fetch covers by olid, e.g.:
+https://covers.openlibrary.org/a/olid/OL23919A-M.jpg
+
+
+
+1️⃣ Getting Book Metadata by Name (Search API)
+Endpoint:
+
+pgsql
+Copy
+Edit
+https://openlibrary.org/search.json?q=<your search term>
+Example:
+
+pgsql
+Copy
+Edit
+https://openlibrary.org/search.json?q=harry+potter
+Response contains:
+
+title — Book title
+
+author_name — Array of author names
+
+cover_i — Cover ID (used with Covers API to get the image)
+
+first_publish_year — Year first published
+
+subject — Topics/genres (array)
+
+isbn — ISBN numbers
+
+key — Book’s Open Library work key (e.g., /works/OL82563W)
+
+author_key — Author IDs (used to get author details)
+
+2️⃣ Getting the Book Cover Image
+From the cover_i in the search results, you use the Covers API:
+
+ruby
+Copy
+Edit
+https://covers.openlibrary.org/b/id/<cover_id>-L.jpg
+-S = Small
+
+-M = Medium
+
+-L = Large
+
+Example:
+
+ruby
+Copy
+Edit
+https://covers.openlibrary.org/b/id/8231856-L.jpg
+3️⃣ Getting Author Details (including Image)
+From the author_key you get in the search results, use:
+
+arduino
+Copy
+Edit
+https://openlibrary.org/authors/<author_id>.json
+Example:
+
+arduino
+Copy
+Edit
+https://openlibrary.org/authors/OL23919A.json
+Response includes:
+
+name — Author name
+
+personal_name — Full personal name
+
+photos — Array of photo IDs (you can get the image using the Covers API for authors)
+
+Author photo:
+
+ruby
+Copy
+Edit
+https://covers.openlibrary.org/a/id/<photo_id>-L.jpg
+4️⃣ Getting Genre / Subject
+The subject array from the search API already contains genres/topics.
+
+If you need more detailed classification, you can use the works API:
+
+arduino
+Copy
+Edit
+https://openlibrary.org/works/<work_id>.json
+This gives:
+
+description — Book description/summary
+
+subjects — Genres/topics
+
+covers — Cover IDs
+
+authors — Linked author IDs
+
+✅ Flow for your frontend
+
+Search by title → /search.json?q=book+name
+
+Get cover_i, author_key, subject, and key.
+
+Use cover_i with Covers API for cover image.
+
+Use author_key with Author API for author name + image.
+
+Use key with Works API for description and detailed genres.
+
+If you want, I can create a sample JSON response structure combining all this so your frontend will have title, cover, author, author image, genre, and description in one call.
+That way, you can directly populate your UI.
+
+To populate your frontend with books from Open Library—not just covers—you’ll need to use their Search API and Works/Authors API, not just the Covers API.
+Here’s the breakdown:
+
+1️⃣ Searching Books by Name
+You can query Open Library’s Search API to get book details.
+
+Endpoint:
+
+pgsql
+Copy
+Edit
+https://openlibrary.org/search.json?q=<search-term>
+Example (searching "Harry Potter"):
+
+pgsql
+Copy
+Edit
+https://openlibrary.org/search.json?q=harry+potter
+Response (trimmed example):
+
+json
+Copy
+Edit
+{
+  "numFound": 1738,
+  "docs": [
+    {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author_name": ["J.K. Rowling"],
+      "cover_i": 8257891,
+      "first_publish_year": 1997,
+      "key": "/works/OL82563W",
+      "subject": ["Fantasy", "Magic", "Children's literature"]
+    }
+  ]
+}
+From here you get:
+
+Title (title)
+
+Authors (author_name)
+
+Cover ID (cover_i)
+
+Genres/Subjects (subject)
+
+Work Key (to fetch more details later)
+
+2️⃣ Getting Book Covers
+From the cover_i returned in the search results, use the Covers API:
+
+Endpoint:
+
+php-template
+Copy
+Edit
+https://covers.openlibrary.org/b/id/<cover_id>-<size>.jpg
+Sizes: S (small), M (medium), L (large)
+
+Example:
+
+ruby
+Copy
+Edit
+https://covers.openlibrary.org/b/id/8257891-L.jpg
+3️⃣ Getting Full Book Details (Genres, Description, etc.)
+Use the Works API with the key from the search.
+
+Endpoint:
+
+arduino
+Copy
+Edit
+https://openlibrary.org/works/<work_id>.json
+Example:
+
+arduino
+Copy
+Edit
+https://openlibrary.org/works/OL82563W.json
+Response (trimmed example):
+
+json
+Copy
+Edit
+{
+  "title": "Harry Potter and the Philosopher's Stone",
+  "description": "A young wizard begins his magical education.",
+  "subjects": ["Fantasy", "Magic", "Children's literature"],
+  "authors": [
+    { "author": { "key": "/authors/OL23919A" } }
+  ]
+}
+4️⃣ Getting Author Details (Including Photo)
+From the authors array in the work details, get the author.key and query:
+
+Endpoint:
+
+arduino
+Copy
+Edit
+https://openlibrary.org/authors/<author_id>.json
+Example:
+
+arduino
+Copy
+Edit
+https://openlibrary.org/authors/OL23919A.json
+Response (trimmed example):
+
+json
+Copy
+Edit
+{
+  "name": "J.K. Rowling",
+  "photos": [12345]
+}
+If there’s a photos ID, you can get it like:
+
+ruby
+Copy
+Edit
+https://covers.openlibrary.org/a/id/<photo_id>-L.jpg
+5️⃣ Putting It All Together
+Flow to get book + author + cover + genre:
+
+Search by title → get cover_i, key, author_name
+
+Use cover_i → get cover image
+
+Use key in Works API → get subjects, description, author ID
+
+Use author_id in Authors API → get author photo
+
+If you want, I can make you a JavaScript function that takes a book name and returns all of this in one JSON ready for your frontend.
+It will combine the search, cover, work, and author APIs automatically. Would you like me to prepare that?
+
+
+https://openlibrary.org/search.json?q=harry+potter&fields=title,author_name,cover_i&limit=5
+https://openlibrary.org/search.json?q=sherlock+holmes&fields=key,title,author_key,author_name,cover_i,first_publish_year,subject
+
+
+Get a related table from database
+sort books based on rating and recency
+name of author
+-cover_id
+-author_cover_id
+-author_name
+-title
+-first-published
+-rating
+-review_text
+-review_date
+
+website where he has all the non-fiction books
+he has read, his notes, his ratings and when he read them.
+The books are sortable by rating, recency and title.
+
+Have a way to add new data about books, update previous reviews and delete entries.
+Display this information from your database in a website like https://sive.rs/book
+Be able to sort your book entries by rating and recency.
+
+post data to  your books based on the book id/isbn 
+rate them
+add date when you read them
+
+add route to update 
+review_text and date 
+
+add route to delete book entries
+new Date().toISOString().split("T")[0]
+req.body.text || "No review text provided";

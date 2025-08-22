@@ -1,0 +1,780 @@
+/* Reset and base styles */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap");
+body {
+  background: #f8f6f2;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --Grayish-Blue: hsl(233, 8%, 62%);
+  --Light-Grayish-Blue: hsl(220, 16%, 96%);
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --White: hsl(0, 0%, 100%);
+  --Dark-Blue: hsl(233, 26%, 24%);
+  --Lime-Green: hsl(136, 65%, 51%);
+  --Bright-Cyan: hsl(192, 70%, 51%);
+  --primary_font: 18px;
+}
+
+.container {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.25) 10%, #ca4a3c 150%),
+    url("../images/5570027.jpg") center/cover no-repeat;
+  padding: 120px 20px;
+}
+.hero.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Barlow", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  display: flex;
+  flex-direction: row;
+  opacity: 0.7;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  text-align: right;
+  font-family: "Spectral", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+.hero-content h1 .fancy-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 2.8rem;
+  text-align: center;
+  color: white;
+}
+h1 .fancy-icon {
+  color: white;
+}
+h1 .fancy-text {
+  color: white;
+}
+.fancy-icon {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 4.2rem;
+  color: black;
+  border: 1px solid #ca4a3c;
+  padding: 0 18px;
+  margin-right: 8px;
+  background: transparent;
+  border-radius: 0;
+  line-height: 1;
+  display: inline-block;
+}
+
+.fancy-text {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 2.8rem;
+  color: black;
+  letter-spacing: 0.04em;
+}
+
+/* Google Fonts import (add to <head>) */
+.hero-content .desc {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 3rem;
+  text-align: right;
+  font-family: "Spectral", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.read {
+  padding: 40px 24px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  background: scroll;
+  background-image: url("/images/parabolic-rectangle.svg");
+  background-position: center;
+  background-size: contain;
+}
+.read p {
+  font-size: 1.3rem;
+  color: black;
+  margin-bottom: 50px;
+  text-align: center;
+  margin-top: 2rem;
+  text-decoration: underline;
+  font-family: "Cinzel Decorative", serif;
+  opacity: 0.6;
+}
+.read h2 {
+  text-align: center;
+  opacity: 0.8;
+  color: #222;
+}
+
+.read-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 32px;
+}
+/*  */
+.read-content > .book:nth-child(4) {
+  grid-column: 1 / 2; /* First book in second row, left */
+  grid-row: 2;
+}
+.read-content > .book:nth-child(5) {
+  grid-column: 3 / 4; /* Second book in second row, right */
+  grid-row: 2;
+}
+
+/* Hide empty third column in second row */
+.read-content > .book:nth-child(6) {
+  grid-column: 3 / 4;
+  grid-row: 2;
+  display: none;
+}
+/*  */
+.book {
+  /* box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12); */
+  padding: 0;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* background-color: white; */
+}
+
+.book img:hover {
+  box-shadow: 0 16px 48px rgba(44, 62, 80, 0.18);
+  transform: translateY(-8px) scale(1.03);
+}
+
+.book::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 100px;
+  height: 100px;
+  z-index: 0;
+}
+.book img {
+  width: 220px;
+  height: 330px;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.book h3 {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #2d3e50;
+  margin: 0 0 8px 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.book .view {
+  color: #f7a9a1;
+  text-decoration: none;
+  font-weight: 400;
+  font-style: normal;
+  transition: color 0.2s;
+  font-family: "Spectral", serif;
+  font-size: 14px;
+}
+
+.book .view:hover {
+  color: #4fd6b1;
+  text-decoration: underline;
+}
+/* Star Rating */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: #e6c07b;
+  cursor: pointer;
+  margin: 0 2px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.star:hover,
+.star.active {
+  color: #2d3e50;
+  transform: scale(1.2);
+}
+section > .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10rem;
+  align-items: center;
+}
+.last {
+  background: url("/images/5594016.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+  box-sizing: border-box;
+}
+.last > div {
+  max-width: 600px;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.last > div h3 {
+  font-size: 2.2rem;
+  opacity: 0.9;
+  font-family: "Cinzel Decorative", serif;
+  margin-bottom: 1rem;
+}
+.last > div p {
+  font-size: 1.2rem;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+  font-family: "Spectral", serif;
+  font-weight: 300;
+}
+/* Design and Images */
+.design {
+  width: 100%;
+  max-width: 400px;
+  padding-left: 1rem;
+}
+.alt {
+  max-width: 400px;
+  text-align: center;
+  padding: 1rem;
+  opacity: 0.6;
+  font-family: "Spectral", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.alt h3 {
+  font-size: 1.6rem;
+  color: #7c5e3c;
+  margin: 0;
+  padding-top: 10px;
+}
+/* Book Detail Page Styles */
+.book-detail {
+  background: #f8f6f2;
+  min-height: 100vh;
+}
+
+.book-detail-container {
+  margin: 0 auto;
+  background: #fff;
+  padding-left: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  /* padding: 40px 32px; */
+}
+
+.book-detail-main {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.book-detail-cover {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book-cover-img {
+  width: 500px;
+  height: 590px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(124, 94, 60, 0.1);
+  background: #e7d8c9;
+}
+
+.bookdetail-main .book-detail-info {
+  text-align: left;
+}
+
+.book-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #7c5e3c;
+  margin-bottom: 13px;
+  margin-top: 0;
+  padding-top: 0;
+  font-family: "Cinzel Decorative", serif;
+}
+
+.book-author {
+  font-size: 1rem;
+  color: #a88b5a;
+  margin-bottom: 16px;
+  font-family: "Spectral", serif;
+}
+
+.book-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #7c5e3c;
+  margin-bottom: 14px;
+}
+.book-meta2 {
+  font-size: 1rem;
+  color: #7c5e3c;
+  margin-bottom: 14px;
+}
+.book-detail-info .star-rating {
+  margin-bottom: 18px;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.book-actions {
+  margin-top: 18px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.edit-btn {
+  background: #e6c07b;
+  color: #7c5e3c;
+  border: none;
+}
+
+.edit-btn:hover {
+  background: #7c5e3c;
+  color: #fff;
+}
+
+.delete-btn {
+  background: #e7d8c9;
+  color: #a88b5a;
+  border: none;
+}
+
+.delete-btn:hover {
+  background: #a88b5a;
+  color: #fff;
+}
+
+/* Tabs */
+.book-detail-tabs {
+  margin-top: 17px;
+  margin-bottom: 1.2rem;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 24px;
+  border-bottom: 2px solid #e6c07b;
+  margin-bottom: 18px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.tab-nav li {
+  margin-bottom: -2px;
+}
+
+.tab-nav li a {
+  display: block;
+  padding: 10px 0;
+  color: #7c5e3c;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+.divider {
+  opacity: 0.2;
+}
+.tab-nav li.active a,
+.tab-nav li a:hover {
+  border-bottom: 2px solid #7c5e3c;
+  color: #a88b5a;
+}
+
+.tab-content .tab-pane {
+  display: none;
+  padding: 18px 0 0 0;
+}
+.tab-pane > h3,
+h4 {
+  color: #7c5e3c;
+  font-family: "Cinzel Decorative", serif;
+}
+#about-book > p {
+  opacity: 0.9;
+  font-family: "Spectral", serif;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.tab-content .tab-pane.active {
+  display: block;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.author-img img {
+  width: 80px;
+  height: 100px;
+  box-shadow: 0 2px 8px rgba(124, 94, 60, 0.1);
+  border-radius: 4px;
+}
+.author-bio > p {
+  margin-bottom: 1rem;
+  opacity: 0.7;
+  font-family: "Spectral", serif;
+  font-weight: 300;
+}
+.author-site-link {
+  color: #7c5e3c;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 1.1rem;
+}
+.author-site-link > a {
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+/* Tablet Devices (max-width: 900px) */
+@media (max-width: 900px) {
+  .container {
+    padding: 20px 12px;
+  }
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-content h1 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  .read-content {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .book {
+    width: 44vw;
+    min-width: 160px;
+  }
+  .book img {
+    width: 100%;
+    height: 220px;
+  }
+  .content {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+  .design,
+  .alt {
+    max-width: 90vw;
+    padding: 0;
+  }
+  .last {
+    height: 280px;
+  }
+  .last > div h3 {
+    font-size: 1.5rem;
+  }
+  .book-detail-main {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .book-cover-img {
+    width: 220px;
+    height: 280px;
+  }
+  .book-detail-container {
+    padding: 16px 8px;
+  }
+}
+
+/* Mobile Devices (max-width: 600px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px 2px;
+  }
+  .hero {
+    padding: 48px 8px;
+    height: 150px;
+    width: auto;
+  }
+  .hero-content h1 {
+    font-size: 1rem;
+    padding-top: 1rem;
+    text-align: right;
+    padding-right: 1rem;
+  }
+  .fancy-icon {
+    font-size: 2rem;
+    padding: 0px;
+  }
+  .fancy-text {
+    font-size: 1rem;
+    text-align: right;
+  }
+  .hero-content .desc {
+    font-size: 0.9rem;
+    padding-right: 1rem;
+  }
+  .read h2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.4rem;
+  }
+  .read p {
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
+  }
+  .read {
+    padding: 0;
+    margin-bottom: 7px;
+  }
+  .read-content {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .book {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0;
+    box-shadow: 0 4px 9px rgba(44, 62, 80, 0.1);
+  }
+  .book::before {
+    width: 100%;
+    height: 100%;
+  }
+  .book a img {
+    width: 250px !important;
+    height: 350px;
+    border-radius: 0;
+    box-shadow: 0 6px 12px rgba(44, 62, 80, 0.1);
+  }
+  section > .content {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: left;
+    gap: 0;
+    justify-content: flex-start;
+  }
+  section > .content > .design {
+    width: 70%;
+    height: 70%;
+  }
+  section > .content > .alt {
+    max-width: 98vw;
+    padding: 7px;
+  }
+  .last {
+    height: 230px;
+  }
+  .last > div {
+    padding-top: 4px;
+    text-align: center;
+  }
+  .last > div h3 {
+    margin-top: 6px;
+    font-size: 1.1rem;
+    padding-top: 2.3rem;
+  }
+  .book-detail-main {
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+  .book-cover-img {
+    width: 120px;
+    height: 160px;
+  }
+  .book-detail-container {
+    padding: 8px 2px;
+  }
+  .tab-nav {
+    gap: 12px;
+    font-size: 0.98rem;
+  }
+  .tab-content .tab-pane {
+    padding: 10px 0 0 0;
+  }
+}
+
+/* boook details */
+/* Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+  .book-detail-container {
+    padding: 8px 2px;
+  }
+  .book-detail-main {
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .book-detail-cover {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  .book-cover-img {
+    width: 250px;
+    height: 400px;
+  }
+  .book-detail-info {
+    padding: 0.4rem 0.1rem;
+    align-items: center;
+  }
+  .book-detail-info > .star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .book-title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .book-author {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .book-meta,
+  .book-meta2 {
+    text-align: center;
+    font-size: 0.98rem;
+    margin-bottom: 8px;
+  }
+  .book-actions {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .tab-nav {
+    gap: 10px;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .tab-content .tab-pane {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .author-info {
+    align-items: center;
+    text-align: center;
+  }
+  .author-bio > h4 {
+    text-align: left;
+  }
+  .author-img img {
+    width: 40px;
+    height: 54px;
+  }
+  .author-bio > p {
+    text-align: left;
+  }
+}
+
+/* Tablet Devices (max-width: 900px) */
+@media (max-width: 900px) {
+  .book-detail-container {
+    padding: 16px 8px;
+  }
+  .book-detail-main {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .book-cover-img {
+    width: 220px;
+    height: 280px;
+  }
+  .book-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .book-author {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .book-meta,
+  .book-meta2 {
+    text-align: center;
+    font-size: 1rem;
+  }
+  .book-actions {
+    text-align: center;
+  }
+  .tab-nav {
+    gap: 16px;
+    font-size: 1rem;
+    justify-content: center;
+  }
+  .tab-content .tab-pane {
+    padding: 12px 0 0 0;
+  }
+  .author-info {
+    align-items: center;
+    text-align: center;
+  }
+  .author-img img {
+    width: 60px;
+    height: 80px;
+  }
+}
+
+.slide-in {
+  transform: translateY(50px);
+  opacity: 0;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+.slide-in.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
