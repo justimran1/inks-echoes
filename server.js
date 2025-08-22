@@ -1,14 +1,14 @@
-require("dotenv").config();
-import express from "express";
+import dotenv from "dot.env";
 import pg from "pg";
+import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 const APIURL = "https://openlibrary.org/search.json?q=";
 const Author_url = "https://openlibrary.org/authors/";
 const server = express();
 const port = process.env.PORT || 3000;
-
-const { Pool } = require("pg");
+dotenv.config();
+const { Pool } = pg;
 const db = new Pool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
