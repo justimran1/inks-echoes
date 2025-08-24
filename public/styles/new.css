@@ -23,3 +23,10 @@ h1 {
   margin-bottom: 16px;
   font-family: "Spectral", serif;
 }
+@media (max-width: 600px) {
+  .book-list {
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}

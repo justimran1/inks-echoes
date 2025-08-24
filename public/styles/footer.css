@@ -114,7 +114,10 @@
   display: flex;
   gap: 18px;
 }
-
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
 .footer-links a {
   color: #888;
   text-decoration: none;
