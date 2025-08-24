@@ -536,7 +536,11 @@ h4 {
   .container {
     padding: 10px 2px;
   }
+  body {
+    padding-top: 0;
+  }
   .hero {
+    margin-top: 0;
     padding: 48px 8px;
     height: 150px;
     width: auto;
@@ -564,8 +568,10 @@ h4 {
     font-size: 2rem;
   }
   .read p {
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin-top: 0.4rem;
+    text-decoration: none;
+    text-transform: lowercase;
   }
   .read {
     padding: 0;
@@ -649,6 +655,9 @@ h4 {
 @media (max-width: 480px) {
   .book-detail-container {
     padding: 8px 2px;
+  }
+  body {
+    padding-top: 0;
   }
   .book-detail-main {
     flex-direction: column;
