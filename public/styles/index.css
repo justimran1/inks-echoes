@@ -305,7 +305,7 @@ section > .content {
 
 .book-cover-img {
   width: 500px;
-  height: 590px;
+  height: 640px;
   object-fit: cover;
   box-shadow: 0 2px 12px rgba(124, 94, 60, 0.1);
   background: #e7d8c9;
@@ -523,8 +523,8 @@ h4 {
     align-items: center;
   }
   .book-cover-img {
-    width: 220px;
-    height: 280px;
+    width: 250px;
+    height: 450px;
   }
   .book-detail-container {
     padding: 16px 8px;
@@ -663,7 +663,7 @@ h4 {
     flex-direction: column;
     gap: 14px;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0rem;
   }
   .book-detail-cover {
     width: 100%;
@@ -674,7 +674,7 @@ h4 {
   }
   .book-cover-img {
     width: 250px;
-    height: 400px;
+    height: 460px;
   }
   .book-detail-info {
     padding: 0.4rem 0.1rem;
