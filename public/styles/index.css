@@ -732,7 +732,7 @@ h4 {
 }
 
 /* Tablet Devices (max-width: 900px) */
-@media (max-width: 900px) {
+@media (max-width: 500px) {
   .book-detail-container {
     padding: 16px 8px;
   }
@@ -742,8 +742,8 @@ h4 {
     align-items: center;
   }
   .book-cover-img {
-    width: 220px;
-    height: 280px;
+    width: 210px;
+    height: 300px;
   }
   .book-title {
     font-size: 2rem;

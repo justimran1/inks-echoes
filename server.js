@@ -15,6 +15,14 @@ const db = new Pool({
     rejectUnauthorized: false, // required for Render
   },
 });
+// const db = new pg.Client({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "books",
+//   password: "olubodun112",
+//   port: 5432,
+// });
+// db.connect();
 export default db;
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.static("public"));
