@@ -106,7 +106,7 @@ server.get("/search", async (req, res) => {
       };
     });
 
-    // Pass data into your EJS template
+    // Pass data into the EJS template
     res.render("new", { books, searchQuery });
   } catch (err) {
     console.error(err);
